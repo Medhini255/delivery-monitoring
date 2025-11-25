@@ -23,8 +23,8 @@ pipeline {
                     docker rm -f grafana || true
 
                     docker run -d --name prometheus --network=host \
-                        -v $PWD/prometheus.yml:/etc/prometheus/prometheus.yml \
-                        -v $PWD/alert_rules.yml:/etc/prometheus/alert_rules.yml \
+                        -v $WORKSPACE/prometheus.yml:/etc/prometheus/prometheus.yml \
+                        -v $WORKSPACE/alert_rules.yml:/etc/prometheus/alert_rules.yml \
                         prom/prometheus
 
                     docker run -d --name grafana -p 3000:3000 grafana/grafana
@@ -33,4 +33,3 @@ pipeline {
         }
     }
 }
-
